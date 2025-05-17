@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang='ru'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title>Блог Путешествий</title>
+  <link href='https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700&display=swap' rel='stylesheet'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --white: #ffffff;
+      --butter: #faf3dd;
+      --beige: #f5f5dc;
+      --cream: #fff5e6;
+      --brown: #d2b48c;
+      --text-dark: #4a3f35;
+      --radius: 1rem;
+    }
+    * {margin: 0; padding: 0; box-sizing: border-box;}
+    body {
+      font-family: 'Rubik', Arial, sans-serif;
+      background: var(--white);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+    header {
+      position: sticky; top: 0;
+      background: var(--white);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 2rem;
+      border-bottom: 2px solid var(--butter);
+      z-index: 999;
+    }
+    .logo {
+      font-weight: 700; font-size: 1.5rem; color: var(--brown);
+    }
+    nav ul {display: flex; gap: 1rem; list-style: none;}
+    nav a {
+      text-decoration: none; color: var(--text-dark); font-weight: 600;
+      padding: .5rem 1rem; border-radius: var(--radius);
+      transition: background .3s;
+    }
+    nav a:hover, nav a.active {background: var(--cream);}
+
+    /* HERO SECTION with VIDEO BACKGROUND */
+    .hero {
+      position: relative;
+      min-height: 70vh;
+      overflow: hidden;
+    }
+    .hero video {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: 1;
+    }
+
+    .section {padding: 4rem 1rem;}
+    .section:nth-of-type(even) {background: var(--beige);}
+
+    .city {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      align-items: center; gap: 2rem; margin-bottom: 3rem;
+    }
+    .city img {
+      width: 100%; border-radius: var(--radius);
+      object-fit: cover; box-shadow: 0 4px 10px rgba(0,0,0,.1);
+    }
+
+    .btn {
+      display: inline-block; font-weight: 600; border: none;
+      border-radius: var(--radius); padding: 1rem 2rem;
+      cursor: pointer; transition: background .3s; color: var(--text-dark);
+    }
+    .btn-primary {background: var(--butter);} .btn-primary:hover {background: var(--cream);}
+
+    .gallery-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .gallery-grid img {width: 100%; border-radius: var(--radius); object-fit: cover;}
+
+    footer {
+      background: var(--brown); color: var(--white); text-align: center;
+      padding: 2rem 1rem;
+    }
+    footer a {color: var(--white); text-decoration: none; font-weight: 600;}
+
+    .social-links {
+      display: flex; justify-content: center; gap: 1.5rem; margin-top: 1rem;
+    }
+    .social-links a {
+      color: var(--white); font-size: 1.5rem; transition: color 0.3s;
+    }
+    .social-links a:hover {color: var(--butter);}
+
+    @media (max-width: 768px) {
+      nav ul {display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background: var(--white); padding: 1rem 0;}
+      nav ul.show {display: flex;}
+      .hamburger {display: block; cursor: pointer;}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class='logo'>travel blog</div>
+    <div class='hamburger' aria-label='Open menu' onclick='toggleMenu()'>☰</div>
+    <nav>
+      <ul id='navList'>
+        <li><a href='#cities'>Города</a></li>
+        <li><a href='#gallery'>Галерея</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section with Only Video -->
+  <section class='hero'>
+<section class="hero">
+  <video id="bgVideo" src="bloger.mp4" loop playsinline></video>
+  <button id="playBtn" class="btn btn-primary" style="position:absolute;z-index:2;top:50%;left:50%;transform:translate(-50%,-50%)">▶ Воспроизвести с звуком</button>
+</section>
+<script>
+  const video = document.getElementById('bgVideo');
+  const btn = document.getElementById('playBtn');
+
+  btn.addEventListener('click', () => {
+    video.play();
+    btn.style.display = 'none';
+  });
+</script>
+
+  <!-- About -->
+  <section id='about' class='section'>
+    <h2>About</h2>
+    <p>Здесь вы можете написать краткую биографию</p>
+  </section>
+
+  <!-- Cities -->
+  <section id='cities' class='section'>
+    <h2>Города, в которых я жила</h2>
+    <div class='city'>
+      <img src='images/spb.jpg' alt='Эрмитаж Санкт-Петербурга'>
+      <div>
+        <h3>Санкт-Петербург, Россия</h3>
+        <p>Эрмитаж — один из крупнейших художественных музеев в мире: коллекция насчитывает свыше 3 миллионов экспонатов.</p>
+      </div>
+    </div>
+    <div class='city'>
+      <img src='images/karlovmost-prague.jpg' alt='Карлов мост в Праге'>
+      <div>
+        <h3>Прага, Чехия</h3>
+        <p>Карлов мост заложен 9 июля 1357 года в 5:31 утра — знаменитая «палиндромная дата» должна была принести удачу; по легенде, в раствор добавляли яйца.</p>
+      </div>
+    </div>
+    <div class='city'>
+      <img src='images/Hangzhou-WEST-LAKE.jpg' alt='Павильон у озера Сиху в Ханчжоу'>
+      <div>
+        <h3>Ханчжоу, Китай</h3>
+        <p>Озеро Сиху включено в список Всемирного наследия ЮНЕСКО. Легенда гласит, что это слеза дракона, оплакивающего утраченный жемчуг.</p>
+      </div>
+    </div>
+    <div class='city'>
+      <img src='images/Budapest-bridge-secheni.jpg' alt='Цепной мост Сечени ночью'>
+      <div>
+        <h3>Будапешт, Венгрия</h3>
+        <p>Цепной мост Сечени, открытый в 1849 году, стал первым постоянным мостом через Дунай и символически объединил Буду и Пешт.</p>
+      </div>
+    </div>
+    <div class='city'>
+      <img src='images/opera-vienna.jpg' alt='Oперa в Вене'>
+      <div>
+        <h3>Вена, Австрия</h3>
+        <p>Красота Венской оперы. Здесь, в «столице музыки», каждый вечер оживает история — от Моцарта до Штрауса.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id='gallery' class='section'>
+    <h2>Галерея</h2>
+    <div class='gallery-grid'>
+      <img src='images/Kazanskiy-Piter.jpg' alt='kazanskiy sobor spb'>
+      <img src='images/Hangzhou-pagoda-boat-westlake.jpg' alt='Hangzhou pagoda boat lake'>
+      <img src='images/Prague-castle.jpg' alt='prague castle'>
+      <img src='images/hofburg.jpg' alt='hofburg palace'>
+      <img src='images/zima-spb.jpg' alt='zima spb'>
+    </div>
+  </section>
+
+  <footer>
+    <div class='social-links'>
+      <a href='https://www.instagram.com' target='_blank' aria-label='Instagram'><i class='fab fa-instagram'></i></a>
+      <a href='https://wa.me/+430011177779' target='_blank' aria-label='WhatsApp'><i class='fab fa-whatsapp'></i></a>
+      <a href='https://t.me/nickname' target='_blank' aria-label='Telegram'><i class='fab fa-telegram'></i></a>
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=@gmail.com" target="_blank" aria-label="Gmail"><i class="fas fa-envelope"></i></a>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('navList').classList.toggle('show');
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+        document.getElementById('navList').classList.remove('show');
+      });
+    });
+  </script>
+</body>
+</html>
+
+
+
